@@ -1,0 +1,50 @@
+@startuml class-diagram
+title Ташкили Конфронсии илмӣ: Диаграмма классов
+
+class User {
+    +int id
+    +string username
+    +string email
+    +string password_hash
+    +string role
+    +datetime created_at
+    +login()
+    +logout()
+}
+
+class Submission {
+    +int id
+    +int user_id
+    +string title
+    +text abstract
+    +string file_path
+    +string status
+    +datetime submitted_at
+    +submit()
+    +update()
+}
+
+class Review {
+    +int id
+    +int submission_id
+    +int reviewer_id
+    +int score
+    +text comments
+    +datetime reviewed_at
+    +saveReview()
+}
+
+class Section {
+    +int id
+    +string title
+    +string room
+    +datetime schedule_time
+    +addSubmission()
+}
+
+User "1" -- "0..*" Submission : подает >
+User "1" -- "0..*" Review : пишет >
+Submission "1" -- "0..1" Review : оценивается >
+Section "1" -- "0..*" Submission : включает >
+
+@enduml
