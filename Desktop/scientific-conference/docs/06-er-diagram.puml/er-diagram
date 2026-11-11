@@ -1,0 +1,62 @@
+@startuml er-diagram
+title ER-диаграмма базы данных: Ташкили Конфронсии илмӣ
+
+hide circle
+skinparam linetype ortho
+
+entity "users (Корбарон)" as users {
+    * id : INT <<PK>>
+    --
+    * username : VARCHAR(50) <<UQ>>
+    * email : VARCHAR(120) <<UQ>>
+    * password_hash : VARCHAR(255)
+    * role : ENUM(admin, organizer, reviewer, participant)
+    created_at : DATETIME
+}
+
+entity "sections (Сексияҳо)" as sections {
+    * id : INT <<PK>>
+    --
+    * title : VARCHAR(150)
+    room : VARCHAR(50)
+    schedule_time : DATETIME
+}
+
+entity "submissions (Мақолаҳо / Аризаҳо)" as submissions {
+    * id : INT <<PK>>
+    --
+    * user_id : INT <<FK>>
+    * section_id : INT <<FK>>
+    * title : VARCHAR(255)
+    * abstract : TEXT
+    * file_path : VARCHAR(255)
+    * status : ENUM(pending, under_review, approved, rejected)
+    submitted_at : DATETIME
+}
+
+entity "reviews (Тақризҳо)" as reviews {
+    * id : INT <<PK>>
+    --
+    * submission_id : INT <<FK>>
+    * reviewer_id : INT <<FK>>
+    * score : INT
+    comments : TEXT
+    reviewed_at : DATETIME
+}
+
+entity "notifications (Огоҳиномаҳо)" as notifications {
+    * id : INT <<PK>>
+    --
+    * user_id : INT <<FK>>
+    * message : TEXT
+    * is_read : TINYINT(1)
+    created_at : DATETIME
+}
+
+users ||--o{ submissions : "пешниҳод мекунад"
+sections ||--o{ submissions : "дар бар мегирад"
+submissions ||--o{ reviews : "баҳо дода мешавад"
+users ||--o{ reviews : "менависад"
+users ||--o{ notifications : "мегирад"
+
+@enduml

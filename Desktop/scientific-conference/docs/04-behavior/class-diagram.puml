@@ -47,4 +47,4 @@ User "1" -- "0..*" Review : пишет >
 Submission "1" -- "0..1" Review : оценивается >
 Section "1" -- "0..*" Submission : включает >
 
-@enduml
+@endum
