@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ташкили конференсияи илмӣ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --primary: #1e3a8a;
+      --primary-hover: #172554;
+      --accent: #0284c7;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: #eff6ff;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #fff;
+      padding: 84px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 17px;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      padding: 26px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 10px;
+    }
+
+    .date-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 14px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .date-item:last-child {
+      border-bottom: none;
+    }
+
+    .date-item span:last-child {
+      font-weight: 700;
+      color: #7dd3fc;
+    }
+
+    /* Sections */
+    section {
+      padding: 72px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 44px;
+    }
+
+    .section-header h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* Grid Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-num {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: #e0f2fe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Schedule Table */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Submission Form */
+    .form-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input, select, textarea {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .file-upload {
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 40px 0;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .cards-grid, .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="logo-badge">КИ</span>
+        <span>Конференсияи Илмӣ 2026</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sections">Сексияҳо</a></li>
+        <li><a href="#program">Барнома</a></li>
+        <li><a href="#requirements">Талабот</a></li>
+        <li><a href="#submit">Пешниҳоди мақола</a></li>
+      </ul>
+      <a href="#submit" class="btn btn-primary">Бақайдгирӣ</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">Конференсияи илмӣ-амалии ҷумҳуриявӣ</span>
+        <h1>Технологияҳои муосири иттилоотӣ ва зеҳни сунъӣ дар илм ва маориф</h1>
+        <p>Платформаи ягона барои бақайдгирии иштирокчиён, пешниҳоди мақолаҳои илмӣ, баррасии тақризҳо ва шиносоӣ бо барномаи кори конференсия.</p>
+        <div class="hero-actions">
+          <a href="#submit" class="btn btn-primary" style="background:#0284c7;">Пешниҳоди мақола</a>
+          <a href="#program" class="btn btn-outline">Барномаи конференсия</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Санаҳои муҳим</h3>
+        <div class="date-item">
+          <span>Қабули мақолаҳо то:</span>
+          <span>10 Декабр 2026</span>
+        </div>
+        <div class="date-item">
+          <span>Эълони натиҷаи тақриз:</span>
+          <span>15 Декабр 2026</span>
+        </div>
+        <div class="date-item">
+          <span>Интишори барнома:</span>
+          <span>18 Декабр 2026</span>
+        </div>
+        <div class="date-item">
+          <span>Рӯзи баргузорӣ:</span>
+          <span>22 Декабр 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section id="sections">
+    <div class="container">
+      <div class="section-header">
+        <h2>Самтҳо ва сексияҳои илмӣ</h2>
+        <p>Мақолаҳои илмӣ дар самтҳои зерин қабул ва баррасӣ карда мешаванд</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-num">Сексияи 1</span>
+          <h3>Зеҳни сунъӣ ва таҳлили додаҳо</h3>
+          <p>Омӯзиши мошинӣ, шабакаҳои нейронӣ, коркарди забони табиӣ ва моделсозии пешгӯикунанда.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">Сексияи 2</span>
+          <h3>Муҳандисии нармафзор ва веб</h3>
+          <p>Меъмории системаҳои иттилоотӣ, таҳияи барномаҳои веб ва мобилӣ, пойгоҳи додаҳо.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">Сексияи 3</span>
+          <h3>Амнияти иттилоотӣ ва шабакаҳо</h3>
+          <p>Ҳифзи додаҳо, криптография, амнияти системаҳои абрӣ ва технологияҳои шабакавӣ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program -->
+  <section id="program" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Барномаи мухтасари конференсия</h2>
+        <p>Ҷадвали баргузории ҷаласаи пленарӣ ва бахшҳои илмӣ</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Вақт</th>
+              <th>Чорабинӣ</th>
+              <th>Макон / Формат</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>09:00 – 09:45</strong></td>
+              <td>Бақайдгирии иштирокчиён ва қабули меҳмонон</td>
+              <td>Толори асосӣ / Онлайн</td>
+            </tr>
+            <tr>
+              <td><strong>10:00 – 11:30</strong></td>
+              <td>Ифтитоҳи расмӣ ва ҷаласаи пленарӣ</td>
+              <td>Толори маҷлисгоҳ №1</td>
+            </tr>
+            <tr>
+              <td><strong>12:00 – 14:30</strong></td>
+              <td>Кори сексияҳои илмӣ ва шунидани маърӯзаҳо</td>
+              <td>Синфхонаҳои 201–203</td>
+            </tr>
+            <tr>
+              <td><strong>15:00 – 16:00</strong></td>
+              <td>Ҷамъбаст ва супоридани сертификатҳо</td>
+              <td>Толори асосӣ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submission Form -->
+  <section id="submit">
+    <div class="container">
+      <div class="section-header">
+        <h2>Бақайдгирӣ ва пешниҳоди мақола</h2>
+        <p>Маълумоти худро пур кунед ва файли мақоларо дар формати DOCX ё PDF боргузорӣ намоед</p>
+      </div>
+
+      <form class="form-box" action="submit.php" method="POST" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullname">Ному насаби муаллиф *</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Масалан: Эргашев Парвиз" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Почтаи электронӣ *</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="institution">Муассиса / Донишгоҳ *</label>
+            <input type="text" id="institution" name="institution" placeholder="Номи донишгоҳ ё ташкилот" required>
+          </div>
+
+          <div class="form-group">
+            <label for="section">Интихоби сексия *</label>
+            <select id="section" name="section" required>
+              <option value="">-- Сексияро интихоб кунед --</option>
+              <option value="1">Сексияи 1: Зеҳни сунъӣ</option>
+              <option value="2">Сексияи 2: Муҳандисии нармафзор</option>
+              <option value="3">Сексияи 3: Амнияти иттилоотӣ</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label for="title">Мавзӯи мақолаи илмӣ *</label>
+            <input type="text" id="title" name="title" placeholder="Номи пурраи мақоларо ворид кунед" required>
+          </div>
+
+          <div class="form-group full">
+            <label for="abstract">Аннотатсия (хулосаи кӯтоҳ)</label>
+            <textarea id="abstract" name="abstract" rows="4" placeholder="Мазмуни мухтасари мақола (100–200 калима)"></textarea>
+          </div>
+
+          <div class="form-group full">
+            <label for="paper">Файли мақола (.docx, .pdf) *</label>
+            <div class="file-upload">
+              <input type="file" id="paper" name="paper" accept=".doc,.docx,.pdf" required>
+              <p style="margin-top:8px;">Ҳаҷми максималии файл: 10 MB</p>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">Ирсоли мақола</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>© 2026 Системаи ташкили конференсияи илмӣ. Ҳамаи ҳуқуқҳо маҳфузанд.</div>
+      <div>Тамос: conference@university.tj | ш. Хуҷанд</div>
+    </div>
+  </footer>
+
+</body>
+</html>
