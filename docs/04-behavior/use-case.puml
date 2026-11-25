@@ -1,0 +1,42 @@
+@startuml use-case
+left to right direction
+title Ташкили конференсияи илмӣ: Вариантҳои истифода
+
+actor "Иштирокчӣ / Муаллиф" as Author
+actor "Рецензент" as Reviewer
+actor "Муҳаррири конференсия" as Editor
+actor "Администратор" as Admin
+
+rectangle "conference-system" {
+    usecase "Войти в систему" as UC1
+    usecase "Регистрация профиля" as UC2
+    usecase "Подать заявку (мақола)" as UC3
+    usecase "Загрузить файл мақола" as UC4
+    usecase "Проверить статус заявки" as UC5
+    usecase "Провести рецензирование" as UC6
+    usecase "Принять или отклонить мақола" as UC7
+    usecase "Сформировать программу" as UC8
+    usecase "Управлять пользователями" as UC9
+    usecase "Вести справочники секций" as UC10
+}
+
+Author --> UC1
+Author --> UC2
+Author --> UC3
+Author --> UC5
+
+Reviewer --> UC1
+Reviewer --> UC6
+
+Editor --> UC1
+Editor --> UC7
+Editor --> UC8
+Editor --> UC10
+
+Admin --> UC1
+Admin --> UC9
+Admin --> UC10
+
+UC3 ..> UC4 : <<include>>
+UC7 ..> UC6 : <<extend>>
+@enduml

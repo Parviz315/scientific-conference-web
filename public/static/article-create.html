@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Статьи и доклады — Конференция ИИ и ИС</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="layout.html">Конференция ИИ и ИС</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Переключить навигацию">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="layout.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="articles.html">Статьи</a></li>
+                    <li class="nav-item"><a class="nav-link" href="article-create.html">Подать доклад</a></li>
+                </ul>
+                <span class="navbar-text text-white small">
+                    Каримов Рустам <span class="badge bg-light text-primary ms-1">Организатор</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main id="main" class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <div>
+            <h1 class="h3 mb-1">Список научных докладов</h1>
+            <p class="text-body-secondary mb-0">Поданные статьи участников конференции «Ташкили Конфронсии илмӣ»</p>
+        </div>
+        <a href="article-create.html" class="btn btn-primary">+ Подать доклад</a>
+    </div>
+
+    <!-- Форма поиска (работает и без JS через GET, с JS — живой поиск) -->
+    <form method="get" action="/static/articles.html" class="mb-2">
+        <label for="article-search" class="visually-hidden">Поиск докладов</label>
+        <input type="search" id="article-search" name="q" class="form-control"
+               placeholder="Поиск по названию доклада, ФИО автора или секции...">
+    </form>
+    <p id="article-search-status" class="small text-body-secondary mb-3" aria-live="polite"></p>
+
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Название доклада</th>
+                        <th scope="col">Автор</th>
+                        <th scope="col" class="d-none d-md-table-cell">Секция</th>
+                        <th scope="col" class="d-none d-lg-table-cell">Дата подачи</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col" class="text-end">Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="articles-tbody">
+                    <tr>
+                        <td>
+                            <a href="article.html?id=1" class="fw-medium text-decoration-none">
+                                Оптимизация реляционных запросов и индексов в информационных системах учёта
+                            </a>
+                        </td>
+                        <td>Рахимов Фарход Джамшедович</td>
+                        <td class="d-none d-md-table-cell">Информационные системы и базы данных</td>
+                        <td class="d-none d-lg-table-cell">12.11.2026</td>
+                        <td><span class="badge rounded-pill bg-success-subtle text-success-emphasis">Принята</span></td>
+                        <td class="text-end text-nowrap">
+                            <a href="article.html?id=1" class="btn btn-sm btn-outline-secondary">Открыть</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger ms-1"
+                                    data-delete-url="/articles/1/delete"
+                                    data-article-title="Оптимизация реляционных запросов и индексов в информационных системах учёта">
+                                Удалить
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="article.html?id=2" class="fw-medium text-decoration-none">
+                                Применение нейросетевых моделей для распознавания таджикской рукописной речи
+                            </a>
+                        </td>
+                        <td>Кодирова Мадина Саидовна</td>
+                        <td class="d-none d-md-table-cell">Искусственный интеллект и машинное обучение</td>
+                        <td class="d-none d-lg-table-cell">14.11.2026</td>
+                        <td><span class="badge rounded-pill bg-warning-subtle text-warning-emphasis">На рецензии</span></td>
+                        <td class="text-end text-nowrap">
+                            <a href="article.html?id=2" class="btn btn-sm btn-outline-secondary">Открыть</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger ms-1"
+                                    data-delete-url="/articles/2/delete"
+                                    data-article-title="Применение нейросетевых моделей для распознавания таджикской рукописной речи">
+                                Удалить
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="article.html?id=3" class="fw-medium text-decoration-none">
+                                Анализ уязвимостей веб-приложений и защита от межсайтового скриптинга
+                            </a>
+                        </td>
+                        <td>Хусейнов Умед Бахромович</td>
+                        <td class="d-none d-md-table-cell">Кибербезопасность и защита информации</td>
+                        <td class="d-none d-lg-table-cell">15.11.2026</td>
+                        <td><span class="badge rounded-pill bg-success-subtle text-success-emphasis">Принята</span></td>
+                        <td class="text-end text-nowrap">
+                            <a href="article.html?id=3" class="btn btn-sm btn-outline-secondary">Открыть</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger ms-1"
+                                    data-delete-url="/articles/3/delete"
+                                    data-article-title="Анализ уязвимостей веб-приложений и защита от межсайтового скриптинга">
+                                Удалить
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="border-top py-3 mt-5 text-center text-body-secondary small">
+    <div class="container">Ташкили Конфронсии илмӣ &copy; 2026</div>
+</footer>
+
+<!-- Модальное окно подтверждения удаления -->
+<div class="modal fade" id="confirm-delete-modal" tabindex="-1" aria-labelledby="confirm-delete-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="confirm-delete-title">Подтверждение удаления</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Вы действительно хотите удалить доклад <strong id="confirm-delete-name"></strong>? Это действие необратимо.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+                <form id="confirm-delete-form" method="post" action="">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+@startuml er-diagram
+title ER-диаграмма базы данных: Ташкили Конфронсии илмӣ
+
+hide circle
+skinparam linetype ortho
+
+entity "User (Корбар)" as User {
+    * id : INT <<PK>>
+    --
+    * username : VARCHAR(50)
+    * email : VARCHAR(100)
+    * password_hash : VARCHAR(255)
+    * role : VARCHAR(30)
+    created_at : DATETIME
+}
+
+entity "Submission (Мақола / Ариза)" as Submission {
+    * id : INT <<PK>>
+    --
+    * user_id : INT <<FK>>
+    section_id : INT <<FK>>
+    * title : VARCHAR(255)
+    * abstract : TEXT
+    * file_path : VARCHAR(255)
+    * status : VARCHAR(30)
+    submitted_at : DATETIME
+}
+
+entity "Review (Тақриз / Баррасӣ)" as Review {
+    * id : INT <<PK>>
+    --
+    * submission_id : INT <<FK>>
+    * reviewer_id : INT <<FK>>
+    * score : INT
+    comments : TEXT
+    reviewed_at : DATETIME
+}
+
+entity "Section (Сексия)" as Section {
+    * id : INT <<PK>>
+    --
+    * title : VARCHAR(150)
+    room : VARCHAR(50)
+    schedule_time : DATETIME
+}
+
+User ||--o{ Submission : "пешниҳод мекунад (подает)"
+User ||--o{ Review : "менависад (пишет)"
+Section ||--o{ Submission : "дар бар мегирад (включает)"
+Submission ||--o| Review : "баҳо дода мешавад (оценивается)"
+
+@enduml

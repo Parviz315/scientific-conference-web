@@ -1,0 +1,30 @@
+@startuml sequence-conference
+title Қабули мақола аз ҷониби муҳаррир
+
+actor "Муҳаррир" as Ed
+participant "Браузер" as B
+participant "index.php\n+ Router" as R
+participant "ArticleController" as C
+participant "ArticleRepository" as Repo
+database "MySQL\nconference_db" as DB
+
+Ed -> B: Тугмаи «Қабул кардан»-ро пахш мекунад (POST)
+B -> R: POST /articles/45/accept (csrf_token)
+R -> C: accept(45)
+C -> C: Тафтиши нақши editor ва CSRF
+C -> Repo: findById(45)
+Repo -> DB: SELECT * FROM articles WHERE id = ?
+DB --> Repo: Сатри мақола
+Repo --> C: Маълумоти мақола (status = pending)
+
+alt мақола мавҷуд аст ва статус pending аст
+    C -> Repo: updateStatus(45, 'accepted', editorId)
+    Repo -> DB: UPDATE articles SET status = ?, reviewed_by = ? WHERE id = ?
+    DB --> Repo: 1 сатр иваз шуд
+    C --> B: 302 /articles («Мақола қабул шуд»)
+else мақола ёфт нашуд ё статус дигар аст
+    C --> B: 403 Forbidden / 404 Not Found
+end
+
+B --> Ed: Намоиши рӯйхати навшудаи мақолаҳо
+@enduml

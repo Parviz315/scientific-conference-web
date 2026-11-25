@@ -1,0 +1,40 @@
+@startuml component-diagram
+title Ташкили Конфронсии илмӣ: Диаграмма компонентов
+
+left to right direction
+
+package "Клиентская часть (Frontend)" {
+    [Браузер пользователя] as Browser
+    [HTML / CSS / JavaScript] as UI
+    Browser --> UI : HTTP / HTTPS
+}
+
+package "Серверная часть (Backend - PHP)" {
+    [Front Controller\n(public/index.php)] as Router
+    
+    package "Controllers" {
+        [AuthController] as AuthC
+        [SubmissionController] as SubC
+        [ReviewController] as RevC
+    }
+    
+    package "Repositories / Models" {
+        [UserRepository] as UserR
+        [SubmissionRepository] as SubR
+    }
+    
+    Router --> AuthC
+    Router --> SubC
+    Router --> RevC
+    
+    SubC --> SubR
+    AuthC --> UserR
+}
+
+database "MySQL Database\n(conference_db)" as DB
+
+SubR --> DB : SQL Queries
+UserR --> DB : SQL Queries
+UI --> Router : AJAX / POST / GET
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+title Диаграммаи ҷойгиркунӣ (Deployment Diagram) - Ташкили Конфронсии илмӣ
+
+node "Компютер / Смартфони корбар" as client {
+    node "Браузер (Chrome, Firefox)" as browser
+}
+
+node "VDS Сервер: Ubuntu 24.04 LTS" as vds {
+    node "Nginx Web Server" as nginx {
+        artifact "public/index.php"
+        artifact "public/assets (CSS, JS)"
+    }
+    
+    node "PHP-FPM 8.2" as fpm {
+        artifact "src/, views/, vendor/"
+        artifact "config/config.php"
+    }
+    
+    database "MySQL 8.0 / MariaDB" as db {
+        artifact "scientific_conference"
+    }
+}
+
+folder "public/uploads" as uploads
+
+browser --> nginx : HTTPS (443)
+nginx --> fpm : FastCGI (Unix Socket)
+fpm --> db : TCP (3306)
+fpm --> uploads : Захираи файлҳо / PDF мақолаҳо
+@enduml
